@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Combiner</title>
+</head>
+<body>
+    <h1>Combine Ukrainian and German Meals</h1>
+    <div>
+        <label for="ukrainian_meal">Ukrainian Meal:</label>
+        <input type="text" id="ukrainian_meal" placeholder="Enter a Ukrainian meal">
+    </div>
+    <div>
+        <label for="german_meal">German Meal:</label>
+        <input type="text" id="german_meal" placeholder="Enter a German meal">
+    </div>
+    <button onclick="generateRecipe()">Generate Recipe</button>
+    <h2>Recipe:</h2>
+    <div id="recipe"></div>
+
+    <script>
+        async function generateRecipe() {
+            const ukrainianMeal = document.getElementById("ukrainian_meal").value;
+            const germanMeal = document.getElementById("german_meal").value;
+            const recipeDiv = document.getElementById("recipe");
+
+            if (!ukrainianMeal || !germanMeal) {
+                recipeDiv.textContent = "Both meals must be provided";
+                return;
+            }
+
+            const response = await fetch("/generate_recipe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ukrainian_meal: ukrainianMeal, german_meal: germanMeal })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                recipeDiv.textContent = data.recipe;
+            } else {
+                recipeDiv.textContent = data.error || "Error generating recipe";
+            }
+        }
+    </script>
+</body>
+</html>
