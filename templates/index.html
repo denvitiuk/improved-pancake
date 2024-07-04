@@ -45,16 +45,28 @@
             margin-top: 20px;
             white-space: pre-wrap; /* Preserve whitespace formatting */
         }
+        .flag-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
     <h1>Combine Ukrainian and German Meals</h1>
     <div>
-        <label for="ukrainian_meal">Ukrainian Meal:</label>
+        <label for="ukrainian_meal">
+            <img src="https://twemoji.maxcdn.com/v/latest/svg/1f1fa-1f1e6.svg" alt="Ukrainian Flag" class="flag-icon">
+            Ukrainian Meal:
+        </label>
         <input type="text" id="ukrainian_meal" placeholder="Enter a Ukrainian meal">
     </div>
     <div>
-        <label for="german_meal">German Meal:</label>
+        <label for="german_meal">
+            <img src="https://twemoji.maxcdn.com/v/latest/svg/1f1e9-1f1ea.svg" alt="German Flag" class="flag-icon">
+            German Meal:
+        </label>
         <input type="text" id="german_meal" placeholder="Enter a German meal">
     </div>
     <button onclick="generateRecipe()">Generate Recipe</button>
